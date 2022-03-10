@@ -12,8 +12,10 @@ import axios from 'axios';
 import { IProduct } from './types/product';
 import ProductCardList from './components/ProductCardList';
 import useFetch from './hooks/useFetch';
+import ThemeContext from './contexts/theme';
+import ThemeSwitch from './components/ThemeSwitch';
 
-export default function App() {
+function Home() {
   const {
     data: products,
     error,
@@ -36,10 +38,31 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
+      <ThemeSwitch />
       <ProductCardList products={products} />
       <StatusBar style="auto" />
     </View>
   );
+}
+
+export function ColorProvider({ children }) {
+  const [color, setColor] = useState('#66ccff');
+  return (
+    <ThemeContext.Provider value={{
+      primaryColor: color,
+      setPrimaryColor: setColor
+    }}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+
+export default function App() {
+  return (
+    <ColorProvider>
+      <Home />
+    </ColorProvider>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -48,6 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50,
   },
   alert: {
     color: 'red',
