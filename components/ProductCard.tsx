@@ -15,7 +15,6 @@ const ProductCard = ({
         source={{
           uri: image,
         }}
-        style={{ widt}}
       />
       <Text>{title}</Text>
       <Text>{description}</Text>
