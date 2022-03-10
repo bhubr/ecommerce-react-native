@@ -1,18 +1,13 @@
 import { View, Text, Image } from 'react-native';
 import React from 'react';
+import { IProduct } from '../types/product';
 
 interface IProductCardProps {
-  title: string;
-  price: number;
-  image: string;
-  description: string;
+  product: IProduct
 }
 
 const ProductCard = ({
-  title,
-  price,
-  image,
-  description,
+  product: { image, title, description, price }
 }: IProductCardProps) => {
   return (
     <View>
@@ -23,6 +18,7 @@ const ProductCard = ({
       />
       <Text>{title}</Text>
       <Text>{description}</Text>
+      <Text>{price}</Text>
     </View>
   );
 };
