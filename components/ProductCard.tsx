@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { IProduct } from '../types/product';
 
@@ -15,6 +15,7 @@ const ProductCard = ({
         source={{
           uri: image,
         }}
+        style={{ widt}}
       />
       <Text>{title}</Text>
       <Text>{description}</Text>
