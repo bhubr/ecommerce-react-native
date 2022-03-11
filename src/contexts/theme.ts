@@ -7,7 +7,7 @@ interface IThemeContext {
 
 const ThemeContext = createContext<IThemeContext>({
   primaryColor: '',
-  setPrimaryColor: () => {}
+  setPrimaryColor: () => {},
 });
 
 export default ThemeContext;

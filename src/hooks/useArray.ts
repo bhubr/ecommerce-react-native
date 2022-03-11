@@ -1,4 +1,3 @@
-
 // function useArray<T>(initialArr: Array<T>) {
 //   const [arr, setArr] = useState<Array<T>>(initialArr);
 

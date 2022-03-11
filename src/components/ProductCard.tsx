@@ -1,13 +1,13 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import React from 'react';
 import { IProduct } from '../types/product';
 
 interface IProductCardProps {
-  product: IProduct
+  product: IProduct;
 }
 
 const ProductCard = ({
-  product: { image, title, description, price }
+  product: { image, title, description, price },
 }: IProductCardProps) => {
   return (
     <View>

@@ -15,7 +15,7 @@ const ProductCardList = ({ products }: IProductCardListProps) => {
       <FlatList
         data={products}
         renderItem={({ item }) => <ProductCard product={item} />}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );

@@ -1,13 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import {
-  ActivityIndicator,
-  Button,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
 
 import { IProduct } from './types/product';
 import ProductCardList from './components/ProductCardList';
@@ -48,13 +41,15 @@ function Home() {
 export function ColorProvider({ children }) {
   const [color, setColor] = useState('#66ccff');
   return (
-    <ThemeContext.Provider value={{
-      primaryColor: color,
-      setPrimaryColor: setColor
-    }}>
+    <ThemeContext.Provider
+      value={{
+        primaryColor: color,
+        setPrimaryColor: setColor,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
-  )
+  );
 }
 
 export default function App() {
@@ -62,7 +57,7 @@ export default function App() {
     <ColorProvider>
       <Home />
     </ColorProvider>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
