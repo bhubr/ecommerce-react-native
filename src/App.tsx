@@ -43,22 +43,6 @@ function Home() {
     <View style={styles.container}>
       {/* <ThemeSwitch /> */}
       <ProductCardList products={products} />
-      {/* {products ? (
-        products.map((product) => (
-          <View key={product.id}>
-            <Text>{product.title}</Text>
-            <Text>{product.price}</Text>
-            <Button
-              title="Add to cart"
-              onPress={() =>
-                dispatch({ type: 'ITEM_ADD', productId: product.id })
-              }
-            />
-          </View>
-        ))
-      ) : (
-        <Text>No products</Text>
-      )} */}
       <StatusBar style="auto" />
     </View>
   );
