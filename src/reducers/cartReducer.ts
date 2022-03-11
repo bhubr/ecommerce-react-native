@@ -3,7 +3,6 @@ export interface ICartItem {
   count: number;
 }
 
-
 interface ICartAddAction {
   type: 'ITEM_ADD';
   productId: number;

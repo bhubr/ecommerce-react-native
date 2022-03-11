@@ -1,8 +1,8 @@
 import { View, Text, Button, Image } from 'react-native';
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { IProduct } from '../types/product';
-import CartContext from '../contexts/cart';
+import useCart from '../hooks/useCart';
 
 interface IProductCardProps {
   product: IProduct;
@@ -11,8 +11,7 @@ interface IProductCardProps {
 const ProductCard = ({
   product: { id, image, title, price },
 }: IProductCardProps) => {
-  const { cart, dispatch } = useContext(CartContext);
-
+  const { add } = useCart();
   return (
     <View style={{ marginVertical: 20 }}>
       <Image
@@ -23,10 +22,7 @@ const ProductCard = ({
       <Text>{title}</Text>
       {/* <Text>{description}</Text> */}
       <Text>{price}</Text>
-      <Button
-        title="Add to cart"
-        onPress={() => dispatch({ type: 'ITEM_ADD', productId: id })}
-      />
+      <Button title="Add to cart" onPress={() => add(id)} />
     </View>
   );
 };
