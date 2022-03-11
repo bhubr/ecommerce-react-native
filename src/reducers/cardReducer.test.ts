@@ -29,4 +29,22 @@ describe('cartReducer', () => {
       expect(newState).toEqual(expected);
     });
   });
+
+  describe('ITEM_SUB action', () => {
+    it('removes an item if it had count 1', () => {
+      const state: ICartItem[] = [
+        { productId: 1, count: 2 },
+        { productId: 2, count: 1 },
+      ];
+      const newState = cartReducer(state, { type: 'ITEM_SUB', productId: 2 });
+      const expected = [{ productId: 1, count: 2 }];
+      expect(newState).toEqual(expected);
+    });
+    it('decrements an item if it had count 2', () => {
+      const state: ICartItem[] = [{ productId: 1, count: 2 }];
+      const newState = cartReducer(state, { type: 'ITEM_SUB', productId: 1 });
+      const expected = [{ productId: 1, count: 1 }];
+      expect(newState).toEqual(expected);
+    });
+  });
 });

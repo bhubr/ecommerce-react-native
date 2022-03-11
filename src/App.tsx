@@ -1,12 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import {
+  ActivityIndicator,
+  Button,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import React, { useState, useReducer } from 'react';
 
 import { IProduct } from './types/product';
-import ProductCardList from './components/ProductCardList';
 import useFetch from './hooks/useFetch';
+
 import ThemeContext from './contexts/theme';
+
+import CartContext from './contexts/cart';
+import ProductCardList from './components/ProductCardList';
 import ThemeSwitch from './components/ThemeSwitch';
+import cartReducer from './reducers/cartReducer';
 
 function Home() {
   const {
@@ -31,8 +41,24 @@ function Home() {
   }
   return (
     <View style={styles.container}>
-      <ThemeSwitch />
+      {/* <ThemeSwitch /> */}
       <ProductCardList products={products} />
+      {/* {products ? (
+        products.map((product) => (
+          <View key={product.id}>
+            <Text>{product.title}</Text>
+            <Text>{product.price}</Text>
+            <Button
+              title="Add to cart"
+              onPress={() =>
+                dispatch({ type: 'ITEM_ADD', productId: product.id })
+              }
+            />
+          </View>
+        ))
+      ) : (
+        <Text>No products</Text>
+      )} */}
       <StatusBar style="auto" />
     </View>
   );
@@ -53,10 +79,18 @@ export function ColorProvider({ children }) {
 }
 
 export default function App() {
+  const [cartState, dispatch] = useReducer(cartReducer, []);
   return (
-    <ColorProvider>
-      <Home />
-    </ColorProvider>
+    <CartContext.Provider
+      value={{
+        cart: cartState,
+        dispatch,
+      }}
+    >
+      <ColorProvider>
+        <Home />
+      </ColorProvider>
+    </CartContext.Provider>
   );
 }
 
