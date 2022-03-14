@@ -13,6 +13,10 @@ export default function useFetch<T>(url: string) {
         const response = await axios.get<T>(url);
         setData(response.data);
       } catch (err) {
+        // l'objet Error renvoyé par axios va contenir une clé
+        // response
+        //   -> err.response.status
+        // voir https://axios-http.com/docs/handling_errors
         setError(err as Error);
       } finally {
         setLoading(false);

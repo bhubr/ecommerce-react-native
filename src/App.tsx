@@ -7,16 +7,16 @@ import {
   View,
 } from 'react-native';
 import React, { useState, useReducer } from 'react';
+import { Provider } from 'react-redux';
 
 import { IProduct } from './types/product';
 import useFetch from './hooks/useFetch';
 
 import ThemeContext from './contexts/theme';
-
-import CartContext from './contexts/cart';
 import ProductCardList from './components/ProductCardList';
 import ThemeSwitch from './components/ThemeSwitch';
-import cartReducer from './reducers/cartReducer';
+
+import { store } from './app/store';
 
 function Home() {
   const {
@@ -63,18 +63,12 @@ export function ColorProvider({ children }) {
 }
 
 export default function App() {
-  const [cartState, dispatch] = useReducer(cartReducer, []);
   return (
-    <CartContext.Provider
-      value={{
-        cart: cartState,
-        dispatch,
-      }}
-    >
+    <Provider store={store}>
       <ColorProvider>
         <Home />
       </ColorProvider>
-    </CartContext.Provider>
+    </Provider>
   );
 }
 
